@@ -27,15 +27,16 @@ function blah() {
 	//no-op
 	// There's probably a better way to do this, except I don't know JavaScript.
 }
+$( document ).ready(function() {
+	$('.MasterAction').each( function() {
+		$this = $( this );
+		var ticket = $this.attr('id').match(/TicketID_(\d+)/)[1];
+		$this.find( 'ul.Actions').append('<li><button class="one-click-spam" onclick="blah()" ticket="' + ticket + '">1-click spam</button></li>');
+	});
 
-$('.MasterAction').each( function() {
-	$this = $( this );
-	var ticket = $this.attr('id').match(/TicketID_(\d+)/)[1];
-	$this.find( 'ul.Actions').append('<li><button class="one-click-spam" onclick="blah()" ticket="' + ticket + '">1-click spam</button></li>');
-});
-
-$('.one-click-spam').click( function( event ){
-	event.preventDefault();
-	event.stopPropagation();
-	OMGSPAM($(this).attr('ticket'));
+	$('.one-click-spam').click( function( event ){
+		event.preventDefault();
+		event.stopPropagation();
+		OMGSPAM($(this).attr('ticket'));
+	});
 });
