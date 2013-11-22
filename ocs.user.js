@@ -2,7 +2,7 @@
 // @description Adds a one-click-spam button
 // @include https://ticket.wikimedia.org/*
 // @name OneClickSpam
-// @version 0.2
+// @version 0.3
 // @author Kunal Mehta <legoktm@gmail.com>
 // @license Public domain
 // @updateURL https://raw.github.com/legoktm/ocs/master/ocs.user.js
@@ -28,7 +28,7 @@ function blah() {
 	// There's probably a better way to do this, except I don't know JavaScript.
 }
 // From http://stackoverflow.com/questions/5494773/running-jquery-after-all-other-js-has-executed
-$( window ).load(function() {
+window.attachEvent('onload', function() {
 	var i = setInterval( function () {
 		if ( $('.MasterAction').length ) {
 			clearInterval(i);
