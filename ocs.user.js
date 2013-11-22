@@ -2,11 +2,11 @@
 // @description Adds a one-click-spam button
 // @include https://ticket.wikimedia.org/*
 // @name OneClickSpam
-// @version 0.4
+// @version 0.5
 // @author Kunal Mehta <legoktm@gmail.com>
 // @license Public domain
 // @updateURL https://raw.github.com/legoktm/ocs/master/ocs.user.js
-// @require https://code.jquery.com/jquery-1.10.2.min.js
+// @require https://bits.wikimedia.org/en.wikipedia.org/load.php?modules=jquery
 // ==/UserScript==
 
 function OMGSPAM( ticketid ) {
