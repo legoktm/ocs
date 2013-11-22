@@ -2,7 +2,7 @@
 // @description Adds a one-click-spam button
 // @include https://ticket.wikimedia.org/*
 // @name OneClickSpam
-// @version 0.1
+// @version 0.2
 // @author Kunal Mehta <legoktm@gmail.com>
 // @license Public domain
 // @updateURL https://raw.github.com/legoktm/ocs/master/ocs.user.js
@@ -27,16 +27,23 @@ function blah() {
 	//no-op
 	// There's probably a better way to do this, except I don't know JavaScript.
 }
-$( document ).ready(function() {
-	$('.MasterAction').each( function() {
-		$this = $( this );
-		var ticket = $this.attr('id').match(/TicketID_(\d+)/)[1];
-		$this.find( 'ul.Actions').append('<li><button class="one-click-spam" onclick="blah()" ticket="' + ticket + '">1-click spam</button></li>');
-	});
+// From http://stackoverflow.com/questions/5494773/running-jquery-after-all-other-js-has-executed
+$( window ).load(function() {
+	var i = setInterval( function () {
+		if ( $('.MasterAction').length ) {
+			clearInterval(i);
+			$('.MasterAction').each( function() {
+				$this = $( this );
+				var ticket = $this.attr('id').match(/TicketID_(\d+)/)[1];
+				$this.find( 'ul.Actions').append('<li><button class="one-click-spam" onclick="blah()" ticket="' + ticket + '">1-click spam</button></li>');
+			});
 
-	$('.one-click-spam').click( function( event ){
-		event.preventDefault();
-		event.stopPropagation();
-		OMGSPAM($(this).attr('ticket'));
-	});
+			$('.one-click-spam').click( function( event ){
+				event.preventDefault();
+				event.stopPropagation();
+				OMGSPAM($(this).attr('ticket'));
+			});
+		}
+	}, 100 );
+
 });
